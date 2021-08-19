@@ -28,47 +28,114 @@ with open("docs/excel/contato.csv", encoding='ISO-8859-1') as arquivo:
   # ignorar a primeira linha (cabeçalho)
   next(tabela)
 
+  row = 0
   # inserindo os dados nos inputs do formulário
   for coluna in tabela:
 
+    row += 1
+
     # nome
-    nome = coluna[0]
-    driver.find_element_by_id("name").send_keys(nome)
+    if coluna[0] in (None, ""):
+      print("Campo Nome não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      nome = coluna[0]
+      try:
+        driver.find_element_by_id("name").send_keys(nome)
+      except:
+        print("Falha ao inserir os dados no campo Nome do formulário de contato.") 
+        break
     time.sleep(0.5)
 
     # email
-    email = coluna[4]
-    driver.find_element_by_id("email").send_keys(email)
+    if coluna[4] in (None, ""):
+      print("Campo Email não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      email = coluna[4]
+      try: 
+        driver.find_element_by_id("email").send_keys(email)
+      except:
+        print("Falha ao inserir os dados no campo Email do formulário de contato.")
+        break
     time.sleep(0.5)
 
     # cep
-    cep = coluna[3]
-    driver.find_element_by_id("cep").send_keys(cep)
+    if coluna[3] in (None, ""):
+      print("Campo Cep não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      cep = coluna[3]
+      try:
+        driver.find_element_by_id("cep").send_keys(cep)
+      except:
+        print("Falha ao inserir os dados no campo Cep do formulário de contato.")
+        break
     time.sleep(0.5)
 
     # estado
-    estado = coluna[2]
-    driver.find_element_by_id("estado").send_keys(estado)
+    if coluna[2] in (None, ""):
+      print("Campo Estado não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      estado = coluna[2]
+      try:
+        driver.find_element_by_id("estado").send_keys(estado)
+      except:
+        print("Falha ao inserir os dados no campo Estado do formulário de contato.")
+        break
     time.sleep(0.5)
 
     # cidade
-    cidade = coluna[1]
-    driver.find_element_by_id("cidade").send_keys(cidade)
+    if coluna[1] in (None, ""):
+      print("Campo Cidade não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      cidade = coluna[1]
+      try:
+        driver.find_element_by_id("cidade").send_keys(cidade)
+      except:
+        print("Falha ao inserir os dados no campo Cidade do formulário de contato.")
+        break
     time.sleep(0.5)
 
     # assunto
-    assunto = coluna[6]
-    driver.find_element_by_id("assunto").send_keys(assunto)
+    if coluna[6] in (None, ""):
+      print("Campo Assunto não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      assunto = coluna[6]
+      try:
+        driver.find_element_by_id("assunto").send_keys(assunto)
+      except:
+        print("Falha ao inserir os dados no campo Assunto do formulário de contato.")
+        break
     time.sleep(0.5)
 
     # telefone 
-    telefone = coluna[5]
-    driver.find_element_by_id("telefone").send_keys(telefone)
+    if coluna[5] in (None, ""):
+      print("Campo Telefone não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      telefone = coluna[5]
+      try:
+        driver.find_element_by_id("telefone").send_keys(telefone)
+      except:
+        print("Falha ao inserir os dados no campo Telefone do formulário de contato.") 
+        break
     time.sleep(0.5)
 
-    # mensagem  
-    mensagem = coluna[7] 
-    driver.find_element_by_id("mensagem").send_keys(mensagem)
+    # mensagem 
+    if coluna[7] in (None, ""):
+      print("Campo Mensagem não encontrado no arquivo .csv, na linha: ",row) 
+      break
+    else: 
+      mensagem = coluna[7]
+      try: 
+        driver.find_element_by_id("mensagem").send_keys(mensagem)
+      except:
+        print("Falha ao inserir os dados no campo Mensagem do formulário de contato.") 
+        break
     time.sleep(0.5)
 
     #submit
