@@ -78,3 +78,30 @@ with open("docs/excel/contato.csv", encoding='ISO-8859-1') as arquivo:
     # response do envio do formulario
     response = ""
     response = driver.find_element_by_class_name("alert").text
+
+    if (response != ""):
+      sqlPessoa = "INSERT INTO pessoa (nome, cidade, estado) VALUES (%s, %s, %s)"
+      valPessoa = (nome, cidade, estado)
+      cursor.execute(sqlPessoa, valPessoa)
+
+      conn.commit()
+
+      # retornando último id do insert Pessoa
+      pessoa_id = cursor.lastrowid
+
+      sqlContato = "INSERT INTO contato (pessoa_id, email, telefone) VALUES (%s, %s, %s)"
+      valContato = (pessoa_id, email, telefone)
+      cursor.execute(sqlContato, valContato)
+
+      conn.commit()
+
+      # retornando último id do insert Contato
+      contato_id = cursor.lastrowid
+
+      sqlStatus = "INSERT INTO statusmensagemenviada (pessoa_id, contato_id, assunto, mensagemenviada, retornosite) VALUES (%s, %s, %s, %s, %s)"
+      valStatus = (pessoa_id, contato_id, assunto, mensagem, response)
+      cursor.execute(sqlStatus, valStatus)
+
+      conn.commit()
+    else:
+      print("Formulário de contato sem resposta. Os dados não foram salvos no banco de dados.")
