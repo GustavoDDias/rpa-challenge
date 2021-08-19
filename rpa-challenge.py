@@ -1,4 +1,6 @@
+import time
 import mysql.connector
+from selenium import webdriver
 
 # iniciando conexão com o banco de dados
 try:
@@ -12,3 +14,8 @@ except mysql.connector.Error as e:
   print ("Error:", s)     
 
 cursor = conn.cursor()
+
+# abrindo o navegador
+driver = webdriver.Chrome()
+driver.get("http://seguralta.com.br/site/contato")
+time.sleep(2)
