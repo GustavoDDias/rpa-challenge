@@ -105,3 +105,7 @@ with open("docs/excel/contato.csv", encoding='ISO-8859-1') as arquivo:
       conn.commit()
     else:
       print("Formulário de contato sem resposta. Os dados não foram salvos no banco de dados.")
+
+# encerrando serviços e a aplicação
+conn.close()
+driver.close()
