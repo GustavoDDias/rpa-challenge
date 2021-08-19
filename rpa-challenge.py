@@ -1,3 +1,4 @@
+import csv
 import time
 import mysql.connector
 from selenium import webdriver
@@ -19,3 +20,10 @@ cursor = conn.cursor()
 driver = webdriver.Chrome()
 driver.get("http://seguralta.com.br/site/contato")
 time.sleep(2)
+
+# carregando os dados do arquivo .csv
+with open("docs/excel/contato.csv", encoding='ISO-8859-1') as arquivo:
+  tabela = csv.reader(arquivo, delimiter=';')
+
+  # ignorar a primeira linha (cabeçalho)
+  next(tabela)
