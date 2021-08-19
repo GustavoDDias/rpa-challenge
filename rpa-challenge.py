@@ -74,3 +74,7 @@ with open("docs/excel/contato.csv", encoding='ISO-8859-1') as arquivo:
     #submit
     driver.find_element_by_xpath("//input[@type='submit']").click()
     time.sleep(3)
+
+    # response do envio do formulario
+    response = ""
+    response = driver.find_element_by_class_name("alert").text
